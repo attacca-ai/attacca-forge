@@ -43,11 +43,17 @@ The skill walks you through structured questioning and produces a complete spec.
 |-------|-------------|------------|
 | `stress-test` | Factorial stress testing — 22 variation types across 5 categories, scenario scoring, aggregate metrics | After writing a spec, before deploying an agent |
 
+### Layer 3 — The Intent (v0.3)
+
+| Skill | Description | When to Use |
+|-------|-------------|------------|
+| `intent-spec` | Agent intent specification — value hierarchies, decision boundaries, delegation frameworks, shadow mode, drift detection | Any agent making autonomous decisions |
+| `intent-audit` | Organizational intent gap audit — three-layer maturity assessment, Klarna test, risk map | Diagnosing why AI investments aren't delivering |
+
 ### Coming Soon
 
 | Layer | Skills | What It Adds |
 |-------|--------|-------------|
-| **Intent** | `intent-spec`, `intent-audit` | Deep organizational alignment — value hierarchies, delegation frameworks, drift detection |
 | **Orchestration** | `build-orchestrator` | The full spec-tests-code pipeline — progressive autonomy, continuous evaluation, quality gates |
 
 Each layer builds on the previous. Adopt them incrementally.
@@ -60,8 +66,8 @@ Attacca Forge encodes a development methodology, not just prompts. The core conc
 - **[Trust Tiers](docs/methodology/trust-tiers.md)** — Classify by risk. Scale evaluation rigor to stakes.
 - **[Factorial Stress Testing](docs/methodology/factorial-stress-testing.md)** — Controlled variations expose hidden failures standard evals miss.
 - **[The Four Failure Modes](docs/methodology/failure-modes.md)** — Inverted U, reasoning-output disconnect, anchoring bias, guardrail inversion.
-- **Intent Engineering** (coming in Intent layer) — Encode organizational judgment into machine-actionable specs.
-- **Progressive Autonomy** (coming in Orchestration layer) — Shadow mode to full autonomy, earned through evaluation.
+- **[Intent Engineering](docs/methodology/intent-engineering.md)** — Encode organizational judgment into machine-actionable specs. The Klarna diagnostic.
+- **[Progressive Autonomy](docs/methodology/progressive-autonomy.md)** — Shadow mode to full autonomy, earned through evaluation.
 
 ## Example Output
 

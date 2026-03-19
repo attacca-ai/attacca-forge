@@ -2,6 +2,16 @@
 
 All notable changes to Attacca Forge will be documented in this file.
 
+## [0.3.0] - 2026-03-19
+
+### Added
+- `intent-spec` skill — Agent intent specification generator with value hierarchies, decision boundary matrix (including shadow mode and promotion criteria), Klarna checklist, feedback loop design, and drift detection signals
+- `intent-audit` skill — Organizational intent gap audit with three-layer maturity assessment, Klarna test, risk map, and investment roadmap
+- Methodology docs: intent engineering, progressive autonomy (5 modes from shadow to full auto)
+
+### Changed
+- README updated with Layer 3 section and methodology links
+
 ## [0.2.0] - 2026-03-19
 
 ### Added
