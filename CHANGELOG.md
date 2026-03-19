@@ -2,6 +2,15 @@
 
 All notable changes to Attacca Forge will be documented in this file.
 
+## [0.4.0] - 2026-03-19
+
+### Added
+- `build-orchestrator` skill — Complete spec-tests-code pipeline with four-layer evaluation stack (progressive autonomy, deterministic validation, continuous flywheel, factorial stress testing), deployment gates checklist, model change protocol, anti-patterns guide, and 3-week bootstrapping timeline
+- Architecture doc — full pipeline visualization (Spec Studio → Eval Gate → Intent Layer → Build Floor → Delivery), ecosystem diagram with breadcrumbs, layer dependency map
+
+### Changed
+- README updated with complete Layer 4 section and architecture link
+
 ## [0.3.0] - 2026-03-19
 
 ### Added

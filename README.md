@@ -50,11 +50,13 @@ The skill walks you through structured questioning and produces a complete spec.
 | `intent-spec` | Agent intent specification — value hierarchies, decision boundaries, delegation frameworks, shadow mode, drift detection | Any agent making autonomous decisions |
 | `intent-audit` | Organizational intent gap audit — three-layer maturity assessment, Klarna test, risk map | Diagnosing why AI investments aren't delivering |
 
-### Coming Soon
+### Layer 4 — The Orchestration (v0.4)
 
-| Layer | Skills | What It Adds |
-|-------|--------|-------------|
-| **Orchestration** | `build-orchestrator` | The full spec-tests-code pipeline — progressive autonomy, continuous evaluation, quality gates |
+| Skill | Description | When to Use |
+|-------|-------------|------------|
+| `build-orchestrator` | Full spec-tests-code pipeline — four-layer eval stack, progressive autonomy, deterministic validation, continuous flywheel, deployment gates | Moving an agent from prototype to production |
+
+See [Architecture](docs/architecture.md) for how all four layers fit together.
 
 Each layer builds on the previous. Adopt them incrementally.
 

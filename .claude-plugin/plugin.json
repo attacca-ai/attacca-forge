@@ -9,7 +9,7 @@
     {
       "name": "attacca-forge",
       "description": "AI agent development methodology — design, evaluate, and align autonomous agents with production-grade specifications, factorial stress testing, and intent engineering",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "author": {
         "name": "Attacca"
       },
