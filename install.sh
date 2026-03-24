@@ -46,7 +46,7 @@ echo "Installing plugin..."
 if [ "$SCRIPT_DIR" != "$PLUGIN_DIR" ]; then
   mkdir -p "$PLUGIN_DIR"
   cp -r "$SCRIPT_DIR/.claude-plugin" "$PLUGIN_DIR/"
-  cp -r "$SCRIPT_DIR/plugins" "$PLUGIN_DIR/"
+  cp -r "$SCRIPT_DIR/skills" "$PLUGIN_DIR/"
   echo -e "  Copied to ${GREEN}$PLUGIN_DIR${NC}"
 else
   echo -e "  Already in place at ${GREEN}$PLUGIN_DIR${NC}"
@@ -54,8 +54,8 @@ fi
 
 # Copy to cache
 mkdir -p "$CACHE_DIR"
-cp -r "$SCRIPT_DIR/plugins/attacca-forge/.claude-plugin" "$CACHE_DIR/"
-cp -r "$SCRIPT_DIR/plugins/attacca-forge/skills" "$CACHE_DIR/"
+cp -r "$SCRIPT_DIR/.claude-plugin" "$CACHE_DIR/"
+cp -r "$SCRIPT_DIR/skills" "$CACHE_DIR/"
 echo -e "  Cache created at ${GREEN}$CACHE_DIR${NC}"
 
 # ─── Register in installed_plugins.json ──────────────────────────────────────

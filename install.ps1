@@ -32,7 +32,7 @@ Write-Host "Installing plugin..."
 if ($ScriptDir -ne $PluginDir) {
     New-Item -ItemType Directory -Force -Path $PluginDir | Out-Null
     Copy-Item -Recurse -Force (Join-Path $ScriptDir ".claude-plugin") $PluginDir
-    Copy-Item -Recurse -Force (Join-Path $ScriptDir "plugins") $PluginDir
+    Copy-Item -Recurse -Force (Join-Path $ScriptDir "skills") $PluginDir
     Write-Host "  Copied to $PluginDir" -ForegroundColor Green
 } else {
     Write-Host "  Already in place at $PluginDir" -ForegroundColor Green
@@ -40,8 +40,8 @@ if ($ScriptDir -ne $PluginDir) {
 
 # Copy to cache
 New-Item -ItemType Directory -Force -Path $CacheDir | Out-Null
-Copy-Item -Recurse -Force (Join-Path $ScriptDir "plugins\attacca-forge\.claude-plugin") $CacheDir
-Copy-Item -Recurse -Force (Join-Path $ScriptDir "plugins\attacca-forge\skills") $CacheDir
+Copy-Item -Recurse -Force (Join-Path $ScriptDir ".claude-plugin") $CacheDir
+Copy-Item -Recurse -Force (Join-Path $ScriptDir "skills") $CacheDir
 Write-Host "  Cache created at $CacheDir" -ForegroundColor Green
 
 # ─── Register in installed_plugins.json ──────────────────────────────────────
