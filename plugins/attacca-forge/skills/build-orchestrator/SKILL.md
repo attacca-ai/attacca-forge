@@ -19,6 +19,16 @@ Implements the complete spec-tests-code pipeline for production-grade AI agent d
 
 This is the methodology for teams shipping agents that need to be right, not just fast.
 
+\#\# CONTEXT LOADING
+
+Before starting, check for `.attacca/context.md` and `.attacca/config.yaml` in the project root. If found:
+- Read **trust tier** → determines eval layer depth (Tier 1: L1 only, Tier 2: L1+L2, Tier 3: L1-L3, Tier 4: all 4 layers)
+- Read **existing artifacts** → load spec, intent spec, and stress test matrix to configure the build pipeline
+- Read **experience level** → adjust explanation depth
+- **After completing**: update `.attacca/context.md` — mark BUILD phase complete, set next phase to TEST
+
+If no config found, ask for tier and reference documents directly.
+
 \#\# WHEN TO USE THIS SKILL
 
 \- You're moving an agent from prototype to production

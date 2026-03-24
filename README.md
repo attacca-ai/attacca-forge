@@ -1,16 +1,35 @@
 # Attacca Forge
 
-**Open-source AI agent development toolkit for [Claude Code](https://claude.ai/claude-code).**
+**Spec-driven AI development toolkit. Your spec is the source of truth — not the model, not the prompt, not the vibes.**
 
-AI agents don't ask clarifying questions — they make assumptions. The quality gap between Level 3 and Level 5 AI-assisted development is specification quality, not model quality.
+```bash
+npx attacca-forge init
+npx attacca-forge install
+```
 
-Attacca Forge is a toolkit for designing AI agents that work. Start with the spec.
+AI agents don't ask clarifying questions — they make assumptions. The quality gap between Level 3 and Level 5 AI-assisted development isn't model intelligence. It's specification quality.
 
-## What It Does
-
-`spec-architect` turns a rough product idea into a rigorous specification document — behavioral contracts, explicit non-behaviors, integration boundaries, behavioral scenarios with contextual stress-test variations, intent contracts, trust tier classification, and ambiguity warnings. Precise enough for an autonomous coding agent to implement without human intervention.
+Attacca Forge gives you an 8-phase pipeline from idea to production, 26 skills for Claude Code, and a methodology that scales evaluation rigor to the stakes of what you're building.
 
 ## Quick Start
+
+### Option A: npx (recommended)
+
+```bash
+# Initialize your project (interactive setup)
+npx attacca-forge init
+
+# Install skills into Claude Code
+npx attacca-forge install
+```
+
+Restart Claude Code. Then say what you want to build:
+
+```
+I want to build a notification system that alerts users when their subscription is about to expire
+```
+
+### Option B: Manual install
 
 ```bash
 git clone https://github.com/attacca-ai/attacca-forge.git
@@ -20,77 +39,120 @@ cd attacca-forge
 ./install.ps1       # Windows PowerShell
 ```
 
-Restart Claude Code. Then just say what you want to build:
+## The Pipeline
 
 ```
-I want to build a notification system that alerts users when their subscription is about to expire
+IDEA → DISCOVER → SPEC → BUILD → TEST → CERTIFY → DEPLOY → MAINTAIN
 ```
 
-The skill walks you through structured questioning and produces a complete spec. See the [getting started guide](docs/getting-started.md) for details.
+Every project starts at IDEA. The pipeline guides you phase by phase. Trust tiers (1-4) scale the rigor at every step — a hobby project moves fast, a safety-critical system gets full evaluation.
+
+```bash
+npx attacca-forge status    # See where you are
+```
+
+```
+  Pipeline:
+
+  ✓ IDEA       Capture your idea and classify risk
+  ✓ SPEC       Write behavioral specification with intent contract
+  ▸ BUILD      Execute implementation on deterministic rails
+    TEST       Run factorial stress testing against scenarios
+    CERTIFY    Human sign-off (tier-appropriate review)
+    DEPLOY     Production deployment with gates
+    MAINTAIN   Continuous flywheel + drift detection
+```
 
 ## Skills
 
-### Layer 1 — The Spec (v0.1)
+### Core Pipeline (9 skills)
 
-| Skill | Description | When to Use |
-|-------|-------------|------------|
-| `spec-architect` | Full specification with intent contracts, eval-ready scenarios, trust tier classification, and organizational alignment | Any system, especially Tier 3-4 |
-| `spec-writer` | Streamlined spec — behavioral scenarios and ambiguity detection, no intent layer | Quick implementation specs, Tier 1-2 |
+| Skill | Phase | What It Does |
+|-------|-------|-------------|
+| `forge-start` | IDEA | Capture intent, classify trust tier, route to next phase |
+| `forge-help` | Any | "What should I do next?" — phase-aware navigation |
+| `codebase-discovery` | DISCOVER | Brownfield behavioral snapshot (6-layer exploration) |
+| `spec-architect` | SPEC | Full spec with intent contracts, eval scenarios, trust tier classification |
+| `spec-writer` | SPEC | Streamlined spec — no intent layer, faster for Tier 1-2 |
+| `stress-test` | TEST | Factorial stress testing — 22 variation types, 4 failure modes |
+| `intent-spec` | SPEC | Agent intent specification — value hierarchies, decision boundaries, drift detection |
+| `intent-audit` | Any | Organizational AI maturity audit — three-layer assessment |
+| `build-orchestrator` | BUILD | Spec-tests-code pipeline with 4-layer eval stack |
 
-### Layer 2 — The Eval (v0.2)
+### Extended Skills (17 skills)
 
-| Skill | Description | When to Use |
-|-------|-------------|------------|
-| `stress-test` | Factorial stress testing — 22 variation types across 5 categories, scenario scoring, aggregate metrics | After writing a spec, before deploying an agent |
+| Skill | Category | What It Does |
+|-------|----------|-------------|
+| `intent-gap-diagnostic` | Intent | 10-min rapid diagnostic — find your biggest AI intent gap |
+| `personal-intent-layer-builder` | Intent | Build a reusable personal intent document for AI collaboration |
+| `ai-workflow-capability-map` | Intent | Map team workflows into agent-ready / augmented / human-only |
+| `insight-to-action-compression-map` | Analysis | Map bottlenecks, redesign compressed workflows |
+| `harness-simulator` | Analysis | Planner-Worker-Judge multi-pass decomposition with self-critique |
+| `ai-difficulty-rapid-audit` | Analysis | 10-min audit — map work across difficulty axes |
+| `problem-difficulty-decomposition` | Analysis | Deep decomposition into 7 difficulty axes |
+| `ai-workflow-optimizer` | Analysis | Evaluate AI usage against difficulty profile |
+| `agent-stack-opportunity-mapper` | Analysis | Map business against 5-layer agent infrastructure stack |
+| `agent-readiness-audit` | Analysis | Technical audit of agent-readiness (content, discovery, API, security) |
+| `agent-economics-analyzer` | Analysis | Evaluate task viability for agent automation |
+| `ai-dev-level-assessment` | Organization | Diagnose team's AI-assisted dev maturity (Level 0-5) |
+| `ai-native-org-redesign` | Organization | Redesign engineering org for AI-native development |
+| `legacy-migration-roadmap` | Organization | Phased brownfield modernization plan |
+| `ai-dev-talent-strategy` | Organization | Career/talent strategy for the AI-native era |
+| `web-fork-strategic-briefing` | Strategy | Strategic briefing on agent web fork impact |
+| `ai-output-taste-builder` | Quality | Build domain-specific "taste" for evaluating AI output |
 
-### Layer 3 — The Intent (v0.3)
+**26 skills total.** Each loads only when invoked — zero context window bloat.
 
-| Skill | Description | When to Use |
-|-------|-------------|------------|
-| `intent-spec` | Agent intent specification — value hierarchies, decision boundaries, delegation frameworks, shadow mode, drift detection | Any agent making autonomous decisions |
-| `intent-audit` | Organizational intent gap audit — three-layer maturity assessment, Klarna test, risk map | Diagnosing why AI investments aren't delivering |
+## Trust Tiers
 
-### Layer 4 — The Orchestration (v0.4)
+Every project gets a trust tier. The tier scales everything downstream.
 
-| Skill | Description | When to Use |
-|-------|-------------|------------|
-| `build-orchestrator` | Full spec-tests-code pipeline — four-layer eval stack, progressive autonomy, deterministic validation, continuous flywheel, deployment gates | Moving an agent from prototype to production |
-
-See [Architecture](docs/architecture.md) for how all four layers fit together.
-
-Each layer builds on the previous. Adopt them incrementally.
+| Tier | Risk Level | Example | Eval Rigor |
+|------|-----------|---------|------------|
+| 1 | Nothing bad happens | Hobby project, prototype | Base scenarios only |
+| 2 | Time or money lost | SaaS, client work | 2 variations/scenario + intent recommended |
+| 3 | Legal/financial/reputation risk | Compliance, finance | 3 variations + intent required + domain review |
+| 4 | Irreversible harm | Healthcare, safety-critical | 5 variations + all eval layers + expert sign-off |
 
 ## The Methodology
 
-Attacca Forge encodes a development methodology, not just prompts. The core concepts:
+Attacca Forge encodes a development methodology, not just prompts:
 
-- **[Spec-Driven Development](docs/methodology/spec-driven-development.md)** — The Spec-Tests-Code triangle. Changes in any node must propagate.
-- **[Trust Tiers](docs/methodology/trust-tiers.md)** — Classify by risk. Scale evaluation rigor to stakes.
-- **[Factorial Stress Testing](docs/methodology/factorial-stress-testing.md)** — Controlled variations expose hidden failures standard evals miss.
-- **[The Four Failure Modes](docs/methodology/failure-modes.md)** — Inverted U, reasoning-output disconnect, anchoring bias, guardrail inversion.
-- **[Intent Engineering](docs/methodology/intent-engineering.md)** — Encode organizational judgment into machine-actionable specs. The Klarna diagnostic.
-- **[Progressive Autonomy](docs/methodology/progressive-autonomy.md)** — Shadow mode to full autonomy, earned through evaluation.
+- **[Spec-Driven Development](docs/methodology/spec-driven-development.md)** — The Spec-Tests-Code triangle
+- **[Trust Tiers](docs/methodology/trust-tiers.md)** — Classify by risk, scale evaluation to stakes
+- **[Factorial Stress Testing](docs/methodology/factorial-stress-testing.md)** — 22 variation types expose hidden failures
+- **[The Four Failure Modes](docs/methodology/failure-modes.md)** — Inverted U, reasoning-output disconnect, anchoring bias, guardrail inversion
+- **[Intent Engineering](docs/methodology/intent-engineering.md)** — Encode organizational judgment into machine-actionable specs
+- **[Progressive Autonomy](docs/methodology/progressive-autonomy.md)** — Shadow mode to full autonomy, earned through evaluation
 
 ## Example Output
 
-See a complete spec generated by `spec-architect`:
-- [Tier 2 SaaS Notification System](examples/tier-2-saas-spec.md) — A subscription expiration notification system with behavioral scenarios, contextual variations, and intent contract
-- [Stress Test Matrix](examples/stress-test-matrix.md) — A factorial stress test for a customer support triage agent with 16 variations across 3 scenarios
+- [Tier 2 SaaS Notification System](examples/tier-2-saas-spec.md) — Complete spec with behavioral scenarios, variations, and intent contract
+- [Stress Test Matrix](examples/stress-test-matrix.md) — Factorial test with 16 variations across 3 scenarios
+
+## CLI Commands
+
+```bash
+npx attacca-forge init       # Interactive project setup
+npx attacca-forge install    # Install skills to Claude Code
+npx attacca-forge status     # Pipeline phase + next steps
+npx attacca-forge help       # Full command reference
+```
 
 ## The Attacca Ecosystem
 
-**Attacca Forge** designs and evaluates agents. It answers: *What should this agent do? How do we know it works? What should it optimize for?*
+**Attacca Forge** designs and evaluates agents. *What should this agent do? How do we know it works?*
 
-**[Attacca Claw](https://github.com/attacca-ai/attacca-claw-desktop)** executes agents. It answers: *How does a non-technical user interact with an autonomous agent safely?*
+**[Attacca Claw](https://github.com/attacca-ai/attacca-claw-desktop)** executes agents. *How does a non-technical user interact with an autonomous agent safely?*
 
-They are independent tools that work together.
+Independent tools that work together.
 
 ## Attribution
 
-This toolkit builds on frameworks by:
+Built on frameworks by:
 - **Nate Jones** — Spec-driven development methodology and intent engineering
 - **Drew Breunig** — Spec-Tests-Code triangle
-- **Mount Sinai Health System** — Failure mode taxonomy from their factorial design study on AI triage (Nature Medicine, 2026)
+- **Mount Sinai Health System** — Failure mode taxonomy from factorial design study (Nature Medicine, 2026)
 
 ## License
 

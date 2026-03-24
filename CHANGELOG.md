@@ -2,6 +2,28 @@
 
 All notable changes to Attacca Forge will be documented in this file.
 
+## [0.5.0] - 2026-03-23
+
+### Added
+- **CLI distribution** — `npx attacca-forge init` interactive project setup wizard
+- **CLI commands** — `init`, `install`, `status`, `help` with npx support
+- **Project context system** — `.attacca/config.yaml` + `.attacca/context.md` track pipeline phase, trust tier, and artifacts
+- **`forge-start` skill** — IDEA phase onboarding (capture intent, classify risk, route to next phase)
+- **`forge-help` skill** — Phase-aware navigation ("what should I do next?")
+- **17 extended skills** — Converted from prompts library: intent gap diagnostic, personal intent builder, workflow capability map, insight-to-action compression, harness simulator (Planner-Worker-Judge), difficulty rapid audit, problem difficulty decomposition, workflow optimizer, agent stack mapper, agent readiness audit, agent economics analyzer, dev level assessment, AI-native org redesign, legacy migration roadmap, talent strategy, web fork strategic briefing, AI output taste builder
+- **Context loading** on all 7 original skills — skills auto-read `.attacca/` config for trust tier, project type, and experience level
+- **npm package** — `attacca-forge` on npm with dual bin entry (`attacca-forge` + `forge`)
+
+### Changed
+- README rewritten for npx-first onboarding
+- Getting started guide rewritten for CLI workflow
+- Pipeline visualization in `status` command (shows current phase, completed phases, next step)
+
+### Totals
+- 26 skills (9 core pipeline + 17 extended)
+- 4 CLI commands
+- Zero dependencies
+
 ## [0.4.0] - 2026-03-19
 
 ### Added

@@ -17,6 +17,16 @@ description: >
 
 Takes a specific AI agent or autonomous workflow and generates a complete intent specification — the machine-actionable document that encodes what the agent should optimize for, what decisions it can make autonomously, when to escalate, how to resolve tradeoffs, and how to measure alignment. This is the document that would have prevented the Klarna problem — where AI resolved tickets 3x faster while quietly destroying customer relationships.
 
+\#\# CONTEXT LOADING
+
+Before starting, check for `.attacca/context.md` and `.attacca/config.yaml` in the project root. If found:
+- Read **trust tier** → Tier 3-4 requires intent spec; Tier 2 recommended
+- Read **existing artifacts** → reference the spec to align intent with behavioral contracts
+- Read **experience level** → adjust explanation depth
+- **After completing**: update `.attacca/context.md` — log intent spec artifact, recommend BUILD or stress-test next
+
+If no config found, proceed normally.
+
 \#\# WHEN TO USE THIS SKILL
 
 \- You're deploying (or have already deployed) an agent that makes autonomous decisions

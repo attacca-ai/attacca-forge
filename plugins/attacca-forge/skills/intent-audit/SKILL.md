@@ -16,6 +16,15 @@ description: >
 
 Assesses your organization's AI deployments against a three-layer intent engineering architecture. Identifies where you're most vulnerable to the Klarna problem — AI succeeding brilliantly at the wrong objective. Produces a maturity assessment, risk map, and prioritized investment roadmap.
 
+\#\# CONTEXT LOADING
+
+Before starting, check for `.attacca/context.md` and `.attacca/config.yaml` in the project root. If found:
+- Read **experience level** → adjust explanation depth
+- This skill operates at the organizational level, not project level — trust tier and project type are less relevant
+- **After completing**: update `.attacca/context.md` — log audit artifact
+
+If no config found, proceed normally.
+
 \#\# WHEN TO USE THIS SKILL
 
 \- You're leading AI strategy and need a structured diagnosis of why investments aren't delivering

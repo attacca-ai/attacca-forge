@@ -17,6 +17,16 @@ description: >
 
 Takes behavioral scenarios from a specification and systematically applies controlled contextual variations to expose hidden agent failures that clean-condition testing never reveals. Based on factorial design methodology — the same approach used in a landmark study that tested AI health triage across 960 controlled variations and exposed critical failures invisible to standard benchmarks.
 
+\#\# CONTEXT LOADING
+
+Before starting, check for `.attacca/context.md` and `.attacca/config.yaml` in the project root. If found:
+- Read **trust tier** → determines minimum variations per scenario (Tier 1: none, Tier 2: 2, Tier 3: 3, Tier 4: 5)
+- Read **existing artifacts** → look for the spec artifact to extract behavioral scenarios automatically
+- Read **experience level** → adjust explanation depth
+- **After completing**: update `.attacca/context.md` — log stress test artifact, recommend intent-spec next (if not done) or BUILD
+
+If no config found, ask for trust tier and scenarios directly.
+
 **What it solves**: Standard evals test scenarios once under clean conditions. This misses anchoring bias, guardrail inversion, and inverted-U failures that only surface when context varies. Your accuracy dashboard might say 87% while masking silent failures on the tails of the distribution — precisely where consequential decisions live.
 
 \#\# WHEN TO USE THIS SKILL

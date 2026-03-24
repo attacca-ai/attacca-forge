@@ -15,6 +15,16 @@ description: >
 
 Transforms a feature idea, product requirement, or system behavior into a specification rigorous enough that an AI agent could implement it without asking clarifying questions. Streamlined version of spec-architect — no Intent Contract section. Use spec-architect when organizational alignment matters; use this when you need a clean, fast spec for implementation.
 
+\#\# CONTEXT LOADING
+
+Before starting, check for `.attacca/context.md` and `.attacca/config.yaml` in the project root. If found:
+- Read **trust tier** → calibrate scenario count automatically
+- Read **project type** → if brownfield, reference discovery output
+- Read **experience level** → adjust explanation depth (new=verbose, comfortable=decisions, expert=terse)
+- **After completing**: update `.attacca/context.md` — mark SPEC phase complete, log artifact path, set next phase to BUILD (or TEST if Tier 2+)
+
+If no config found, proceed normally.
+
 \#\# WHEN TO USE THIS SKILL
 
 \- User needs a quick, focused spec for implementation

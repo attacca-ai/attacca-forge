@@ -1,0 +1,44 @@
+{
+  "name": "attacca-forge",
+  "version": "0.5.0",
+  "description": "Spec-driven AI development toolkit — design, evaluate, stress-test, and certify autonomous agents from your terminal",
+  "keywords": [
+    "ai",
+    "agents",
+    "spec-driven-development",
+    "specification",
+    "evaluation",
+    "stress-testing",
+    "intent-engineering",
+    "claude-code",
+    "ai-development",
+    "vibe-coding"
+  ],
+  "homepage": "https://github.com/attacca-ai/attacca-forge",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/attacca-ai/attacca-forge.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Attacca",
+    "url": "https://github.com/attacca-ai"
+  },
+  "type": "module",
+  "bin": {
+    "attacca-forge": "./bin/cli.js",
+    "forge": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "plugins/",
+    "docs/",
+    "examples/",
+    "LICENSE",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
