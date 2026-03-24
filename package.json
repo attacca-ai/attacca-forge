@@ -1,6 +1,6 @@
 {
   "name": "attacca-forge",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Spec-driven AI development toolkit — design, evaluate, stress-test, and certify autonomous agents from your terminal",
   "keywords": [
     "ai",

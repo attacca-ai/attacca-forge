@@ -2,7 +2,7 @@
 // attacca-forge install — Install skills into Claude Code plugin directory
 // =============================================================================
 
-import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { getClaudeDir, getPluginDir, isClaudeInstalled } from '../utils/detect-claude.js';
 
@@ -26,7 +26,6 @@ function registerMarketplace(claudeDir, targetDir) {
   const marketplaces = readJsonFile(marketplacesPath) || {};
 
   if (marketplaces[MARKETPLACE_NAME]) {
-    // Update timestamp
     marketplaces[MARKETPLACE_NAME].lastUpdated = new Date().toISOString();
   } else {
     marketplaces[MARKETPLACE_NAME] = {
@@ -43,30 +42,27 @@ function registerMarketplace(claudeDir, targetDir) {
   return true;
 }
 
-function registerPlugin(claudeDir, targetDir, version) {
+function registerPlugin(claudeDir, pluginDir, version) {
   const installedPath = join(claudeDir, 'plugins', 'installed_plugins.json');
   const installed = readJsonFile(installedPath) || { version: 2, plugins: {} };
 
-  // Ensure version 2 format
   if (!installed.version) installed.version = 2;
   if (!installed.plugins) installed.plugins = {};
 
   const pluginKey = `${PLUGIN_NAME}@${MARKETPLACE_NAME}`;
   const now = new Date().toISOString();
 
-  // Set up cache directory
+  // Set up cache directory and copy skills there
   const cachePath = join(claudeDir, 'plugins', 'cache', MARKETPLACE_NAME, PLUGIN_NAME, version);
   if (!existsSync(cachePath)) mkdirSync(cachePath, { recursive: true });
 
-  // Copy skills to cache
-  const sourceSkills = join(targetDir, 'skills');
+  const sourceSkills = join(pluginDir, 'skills');
   const cacheSkills = join(cachePath, 'skills');
   if (existsSync(sourceSkills)) {
     cpSync(sourceSkills, cacheSkills, { recursive: true, force: true });
   }
 
   if (installed.plugins[pluginKey]) {
-    // Update existing entry
     installed.plugins[pluginKey][0].version = version;
     installed.plugins[pluginKey][0].installPath = cachePath;
     installed.plugins[pluginKey][0].lastUpdated = now;
@@ -102,8 +98,13 @@ export default async function install({ args, cwd, rootDir }) {
 
   console.log('  ✓ Claude Code detected');
 
-  // Source plugin directory (shipped with this package)
+  // Source directories (shipped with this package)
+  // Repo layout:
+  //   .claude-plugin/marketplace.json   ← marketplace descriptor
+  //   plugins/attacca-forge/            ← plugin with .claude-plugin/plugin.json + skills/
+  const sourceMarketplace = join(rootDir, '.claude-plugin', 'marketplace.json');
   const sourcePlugin = join(rootDir, 'plugins', 'attacca-forge');
+
   if (!existsSync(sourcePlugin)) {
     console.error('  ✗ Plugin source not found. Package may be corrupted.');
     process.exit(1);
@@ -111,36 +112,35 @@ export default async function install({ args, cwd, rootDir }) {
 
   // Read version from package.json
   const pkg = readJsonFile(join(rootDir, 'package.json'));
-  const version = pkg?.version || '0.5.1';
+  const version = pkg?.version || '0.5.2';
 
-  // Target plugin directory
+  // Target: ~/.claude/plugins/local/attacca-forge/
+  // Installed layout (mirrors nirbound-marketplace):
+  //   .claude-plugin/marketplace.json
+  //   plugins/attacca-forge/.claude-plugin/plugin.json
+  //   plugins/attacca-forge/skills/
   const claudeDir = getClaudeDir();
   const targetDir = getPluginDir();
-  const localDir = join(claudeDir, 'plugins', 'local');
 
-  // Create directories
-  if (!existsSync(localDir)) mkdirSync(localDir, { recursive: true });
-
-  // Copy .claude-plugin/ and skills/
   const existed = existsSync(targetDir);
   if (!existsSync(targetDir)) mkdirSync(targetDir, { recursive: true });
 
-  const sourceClaudePlugin = join(sourcePlugin, '.claude-plugin');
-  const sourceSkills = join(sourcePlugin, 'skills');
-  const targetClaudePlugin = join(targetDir, '.claude-plugin');
-  const targetSkills = join(targetDir, 'skills');
+  // 1. Copy marketplace descriptor to target root
+  const targetMarketplaceDir = join(targetDir, '.claude-plugin');
+  if (!existsSync(targetMarketplaceDir)) mkdirSync(targetMarketplaceDir, { recursive: true });
+  if (existsSync(sourceMarketplace)) {
+    cpSync(sourceMarketplace, join(targetMarketplaceDir, 'marketplace.json'), { force: true });
+  }
 
-  if (existsSync(sourceClaudePlugin)) {
-    cpSync(sourceClaudePlugin, targetClaudePlugin, { recursive: true, force: true });
-  }
-  if (existsSync(sourceSkills)) {
-    cpSync(sourceSkills, targetSkills, { recursive: true, force: true });
-  }
+  // 2. Copy plugin (with .claude-plugin/plugin.json + skills/) into nested directory
+  const targetPlugin = join(targetDir, 'plugins', 'attacca-forge');
+  if (!existsSync(targetPlugin)) mkdirSync(targetPlugin, { recursive: true });
+  cpSync(sourcePlugin, targetPlugin, { recursive: true, force: true });
 
   // Count skills
+  const targetSkills = join(targetPlugin, 'skills');
   let skillCount = 0;
   if (existsSync(targetSkills)) {
-    const { readdirSync } = await import('node:fs');
     skillCount = readdirSync(targetSkills).filter((f) => {
       return existsSync(join(targetSkills, f, 'SKILL.md'));
     }).length;
@@ -149,14 +149,15 @@ export default async function install({ args, cwd, rootDir }) {
   console.log(`  ✓ ${existed ? 'Updated' : 'Installed'} ${skillCount} skills to Claude Code`);
   console.log(`    Location: ${targetDir}`);
 
-  // Register marketplace and plugin
+  // 3. Register marketplace in known_marketplaces.json
   const pluginsDir = join(claudeDir, 'plugins');
   if (!existsSync(pluginsDir)) mkdirSync(pluginsDir, { recursive: true });
 
   registerMarketplace(claudeDir, targetDir);
   console.log('  ✓ Marketplace registered');
 
-  registerPlugin(claudeDir, targetDir, version);
+  // 4. Register plugin in installed_plugins.json + populate cache
+  registerPlugin(claudeDir, targetPlugin, version);
   console.log('  ✓ Plugin registered');
 
   console.log('');
