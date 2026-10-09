@@ -17,11 +17,11 @@ Transforms a feature idea, product requirement, or system behavior into a specif
 
 \#\# CONTEXT LOADING
 
-Before starting, check for `.attacca/context.md` and `.attacca/config.yaml` in the project root. If found:
+Before starting, check for `.factory/context.md` and `.factory/config.yaml` in the project root. If found:
 - Read **trust tier** → calibrate scenario count automatically
 - Read **project type** → if brownfield, reference discovery output
 - Read **experience level** → adjust explanation depth (new=verbose, comfortable=decisions, expert=terse)
-- **After completing**: update `.attacca/context.md` — mark SPEC phase complete, log artifact path, set next phase to BUILD (or TEST if Tier 2+)
+- **After completing**: update `.factory/context.md` — mark SPEC phase complete, log artifact path, set next phase to BUILD (or TEST if Tier 2+)
 
 If no config found, proceed normally.
 

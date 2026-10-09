@@ -19,11 +19,11 @@ Takes a specific AI agent or autonomous workflow and generates a complete intent
 
 \#\# CONTEXT LOADING
 
-Before starting, check for `.attacca/context.md` and `.attacca/config.yaml` in the project root. If found:
+Before starting, check for `.factory/context.md` and `.factory/config.yaml` in the project root. If found:
 - Read **trust tier** → Tier 3-4 requires intent spec; Tier 2 recommended
 - Read **existing artifacts** → reference the spec to align intent with behavioral contracts
 - Read **experience level** → adjust explanation depth
-- **After completing**: update `.attacca/context.md` — log intent spec artifact, recommend BUILD or stress-test next
+- **After completing**: update `.factory/context.md` — log intent spec artifact, recommend BUILD or stress-test next
 
 If no config found, proceed normally.
 

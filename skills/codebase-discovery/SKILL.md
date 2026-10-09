@@ -18,11 +18,11 @@ Reads an existing (brownfield) codebase within a scoped blast radius and produce
 
 \#\# CONTEXT LOADING
 
-Before starting, check for `.attacca/context.md` and `.attacca/config.yaml` in the project root. If found:
+Before starting, check for `.factory/context.md` and `.factory/config.yaml` in the project root. If found:
 - Read **trust tier** → scales discovery depth (Tier 3-4: full 6-layer exploration mandatory; Tier 1-2: can skip test coverage layer if none exist)
 - Read **project type** → should be brownfield (if greenfield, warn user this skill is for existing codebases)
 - Read **experience level** → adjust explanation depth
-- **After completing**: update `.attacca/context.md` — mark DISCOVER phase complete, log discovery artifact, set next phase to SPEC
+- **After completing**: update `.factory/context.md` — mark DISCOVER phase complete, log discovery artifact, set next phase to SPEC
 
 If no config found, proceed normally.
 

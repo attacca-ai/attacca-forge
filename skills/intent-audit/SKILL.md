@@ -18,10 +18,10 @@ Assesses your organization's AI deployments against a three-layer intent enginee
 
 \#\# CONTEXT LOADING
 
-Before starting, check for `.attacca/context.md` and `.attacca/config.yaml` in the project root. If found:
+Before starting, check for `.factory/context.md` and `.factory/config.yaml` in the project root. If found:
 - Read **experience level** → adjust explanation depth
 - This skill operates at the organizational level, not project level — trust tier and project type are less relevant
-- **After completing**: update `.attacca/context.md` — log audit artifact
+- **After completing**: update `.factory/context.md` — log audit artifact
 
 If no config found, proceed normally.
 

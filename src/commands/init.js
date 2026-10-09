@@ -4,7 +4,7 @@
 
 import { basename } from 'node:path';
 import { ask, choose } from '../utils/prompt.js';
-import { isInitialized, writeConfig, writeContext } from '../utils/context.js';
+import { isInitialized, writeConfig, writeContext, writeStatus } from '../utils/context.js';
 
 export default async function init({ args, cwd }) {
   console.log('\n  Attacca Forge — Project Setup');
@@ -96,6 +96,7 @@ export default async function init({ args, cwd }) {
     : 'Start with the IDEA phase to capture your intent.\nInvoke: "help me start" or /forge-start';
 
   writeContext(cwd, config, 'IDEA', [], [], nextStep);
+  writeStatus(cwd, config, 'IDEA');
 
   // Summary
   console.log('\n  ✓ Project initialized\n');
@@ -103,8 +104,9 @@ export default async function init({ args, cwd }) {
   console.log(`    Type:       ${type}`);
   console.log(`    Trust Tier: ${tier}`);
   console.log(`    Level:      ${level}`);
-  console.log(`    Config:     .attacca/config.yaml`);
-  console.log(`    Context:    .attacca/context.md`);
+  console.log(`    Config:     .factory/config.yaml`);
+  console.log(`    Context:    .factory/context.md`);
+  console.log(`    Status:     .factory/status.json`);
   console.log('');
 
   if (type === 'brownfield') {

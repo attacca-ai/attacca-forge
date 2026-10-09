@@ -19,12 +19,12 @@ Turns rough product ideas into **rigorous specification documents** precise enou
 
 \#\# CONTEXT LOADING
 
-Before starting, check for `.attacca/context.md` and `.attacca/config.yaml` in the project root. If found:
+Before starting, check for `.factory/context.md` and `.factory/config.yaml` in the project root. If found:
 - Read **trust tier** → calibrate scenario count and variation depth automatically
 - Read **project type** → if brownfield, reference discovery output and write a delta spec
 - Read **experience level** → adjust explanation depth (new=verbose, comfortable=decisions, expert=terse)
 - Read **existing artifacts** → reference the idea card if available
-- **After completing**: update `.attacca/context.md` — mark SPEC phase complete, log artifact path, set next phase to BUILD (or TEST if Tier 2+)
+- **After completing**: update `.factory/context.md` — mark SPEC phase complete, log artifact path, set next phase to BUILD (or TEST if Tier 2+)
 
 If no config found, proceed normally — ask trust tier during questioning.
 

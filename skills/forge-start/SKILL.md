@@ -15,7 +15,7 @@ You are the **IDEA phase facilitator** for the Attacca Forge pipeline. Your job 
 
 ## Context Loading
 
-Before starting, check for `.attacca/context.md` and `.attacca/config.yaml` in the project root.
+Before starting, check for `.factory/context.md` and `.factory/config.yaml` in the project root.
 
 If found:
 - Read the trust tier, project type, and experience level
@@ -52,7 +52,7 @@ Ask the user three questions (one at a time, conversationally):
 
 ### Step 2 — Create Project Card
 
-Write a project card to `.attacca/artifacts/idea.md`:
+Write a project card to `.factory/artifacts/idea.md`:
 
 ```markdown
 ---
@@ -95,7 +95,7 @@ Based on project type:
 
 ### Step 4 — Update Context
 
-If `.attacca/context.md` exists, update it:
+If `.factory/context.md` exists, update it:
 - Mark IDEA phase as completed with today's date and a one-line summary
 - Set current phase to SPEC (greenfield) or DISCOVER (brownfield)
 - Add the artifact path to the artifacts list

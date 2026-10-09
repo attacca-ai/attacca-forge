@@ -19,11 +19,11 @@ Takes behavioral scenarios from a specification and systematically applies contr
 
 \#\# CONTEXT LOADING
 
-Before starting, check for `.attacca/context.md` and `.attacca/config.yaml` in the project root. If found:
+Before starting, check for `.factory/context.md` and `.factory/config.yaml` in the project root. If found:
 - Read **trust tier** → determines minimum variations per scenario (Tier 1: none, Tier 2: 2, Tier 3: 3, Tier 4: 5)
 - Read **existing artifacts** → look for the spec artifact to extract behavioral scenarios automatically
 - Read **experience level** → adjust explanation depth
-- **After completing**: update `.attacca/context.md` — log stress test artifact, recommend intent-spec next (if not done) or BUILD
+- **After completing**: update `.factory/context.md` — log stress test artifact, recommend intent-spec next (if not done) or BUILD
 
 If no config found, ask for trust tier and scenarios directly.
 

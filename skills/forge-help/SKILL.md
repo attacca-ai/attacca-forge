@@ -17,8 +17,8 @@ You are the **navigation assistant** for the Attacca Forge pipeline. Your job is
 
 Read these files from the project root:
 
-1. **`.attacca/config.yaml`** — Project configuration (name, type, tier, level)
-2. **`.attacca/context.md`** — Current phase, completed phases, artifacts, next step
+1. **`.factory/config.yaml`** — Project configuration (name, type, tier, level)
+2. **`.factory/context.md`** — Current phase, completed phases, artifacts, next step
 
 If neither file exists:
 - Tell the user: "No Attacca Forge project found. Run `npx attacca-forge init` to set up, or `npx attacca-forge install` to install skills."

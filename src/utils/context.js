@@ -1,27 +1,46 @@
 // =============================================================================
-// .attacca/ context management — read/write project state
+// .factory/ context management — read/write project state
+// Migrated from .attacca/ to .factory/ (2026-04-08)
+// Backward-compatible: reads from .attacca/ if .factory/ doesn't exist
 // =============================================================================
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
-const ATTACCA_DIR = '.attacca';
+const FACTORY_DIR = '.factory';
+const LEGACY_DIR = '.attacca';
 const CONFIG_FILE = 'config.yaml';
 const CONTEXT_FILE = 'context.md';
+const STATUS_FILE = 'status.json';
+
+/**
+ * Resolve the active directory: .factory/ preferred, .attacca/ as fallback.
+ */
+function resolveDir(cwd) {
+  if (existsSync(join(cwd, FACTORY_DIR))) return FACTORY_DIR;
+  if (existsSync(join(cwd, LEGACY_DIR))) return LEGACY_DIR;
+  return FACTORY_DIR; // Default to new standard for new projects
+}
 
 export function getAttaccaDir(cwd) {
-  return join(cwd, ATTACCA_DIR);
+  return join(cwd, resolveDir(cwd));
 }
 
 export function isInitialized(cwd) {
-  return existsSync(join(cwd, ATTACCA_DIR, CONFIG_FILE));
+  return existsSync(join(cwd, FACTORY_DIR, CONFIG_FILE))
+    || existsSync(join(cwd, LEGACY_DIR, CONFIG_FILE));
 }
 
 export function ensureDir(cwd) {
-  const dir = getAttaccaDir(cwd);
+  // Always write to .factory/ (new standard)
+  const dir = join(cwd, FACTORY_DIR);
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
   const artifacts = join(dir, 'artifacts');
   if (!existsSync(artifacts)) mkdirSync(artifacts, { recursive: true });
+  const progress = join(dir, 'progress');
+  if (!existsSync(progress)) mkdirSync(progress, { recursive: true });
+  const decisions = join(dir, 'decisions');
+  if (!existsSync(decisions)) mkdirSync(decisions, { recursive: true });
   return dir;
 }
 
@@ -32,9 +51,12 @@ export function writeConfig(cwd, config) {
 }
 
 export function readConfig(cwd) {
-  const file = join(cwd, ATTACCA_DIR, CONFIG_FILE);
-  if (!existsSync(file)) return null;
-  return yamlToConfig(readFileSync(file, 'utf-8'));
+  // Try .factory/ first, fall back to .attacca/
+  const factoryFile = join(cwd, FACTORY_DIR, CONFIG_FILE);
+  if (existsSync(factoryFile)) return yamlToConfig(readFileSync(factoryFile, 'utf-8'));
+  const legacyFile = join(cwd, LEGACY_DIR, CONFIG_FILE);
+  if (existsSync(legacyFile)) return yamlToConfig(readFileSync(legacyFile, 'utf-8'));
+  return null;
 }
 
 export function writeContext(cwd, config, phase, completedPhases, artifacts, nextStep) {
@@ -70,9 +92,28 @@ ${nextStep}
 }
 
 export function readContext(cwd) {
-  const file = join(cwd, ATTACCA_DIR, CONTEXT_FILE);
-  if (!existsSync(file)) return null;
-  return readFileSync(file, 'utf-8');
+  const factoryFile = join(cwd, FACTORY_DIR, CONTEXT_FILE);
+  if (existsSync(factoryFile)) return readFileSync(factoryFile, 'utf-8');
+  const legacyFile = join(cwd, LEGACY_DIR, CONTEXT_FILE);
+  if (existsSync(legacyFile)) return readFileSync(legacyFile, 'utf-8');
+  return null;
+}
+
+/**
+ * Write status.json for scanner compatibility.
+ */
+export function writeStatus(cwd, config, phase) {
+  const dir = ensureDir(cwd);
+  const status = {
+    state: phase || config?.project?.phase || 'IDEA',
+    health: 'active',
+    track: 'software',
+    archived: false,
+    completion_pct: 0,
+    gap_count: 0,
+    last_activity: new Date().toISOString(),
+  };
+  writeFileSync(join(dir, STATUS_FILE), JSON.stringify(status, null, 2), 'utf-8');
 }
 
 // Minimal YAML serializer (no dependencies)
